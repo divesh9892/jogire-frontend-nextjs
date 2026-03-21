@@ -14,10 +14,11 @@ export async function generateMetadata({ params }: PageProps) {
   const guru = gurusData.find((g) => g.slug === resolvedParams.slug);
   
   if (!guru) return { title: "Guru Not Found" };
+  const snippet = guru.content[0]?.text || "Discover the timeless wisdom of this spiritual master.";
 
   return {
     title: `${guru.name} | Jogire Spiritual Lineage`,
-    description: guru.content[0].text.substring(0, 150) + "...", // Extracts a perfect SEO snippet
+    description: snippet.substring(0, 150) + "...", // Extracts a perfect SEO snippet
   };
 }
 
