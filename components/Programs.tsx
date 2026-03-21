@@ -100,7 +100,7 @@ const Programs = () => {
               </p>
             </div>
             <Link 
-              href="#book-session" 
+              href="/book" 
               className="whitespace-nowrap bg-studio-primary text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-studio-accent focus:bg-studio-accent focus:outline-none focus:ring-4 focus:ring-orange-200 transition-all duration-300 shadow-lg transform hover:-translate-y-1 active:scale-95"
             >
               Book Free Session

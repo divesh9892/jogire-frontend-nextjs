@@ -136,7 +136,7 @@ const Hero = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Link 
-              href="#book-session" 
+              href="/book" 
               className="bg-studio-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-studio-accent transition-all duration-300 shadow-lg text-center transform hover:-translate-y-1 w-full sm:w-auto"
             >
               Book Free Session

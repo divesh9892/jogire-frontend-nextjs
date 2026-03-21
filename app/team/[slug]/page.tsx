@@ -102,7 +102,7 @@ export default async function TeamMemberProfile({ params }: PageProps) {
             <div className="mt-12 pt-8 border-t border-gray-100">
               <p className="text-studio-muted mb-4 font-medium">Ready to start your journey with our experts?</p>
               <Link 
-                href="/#book-session" 
+                href="/book" 
                 className="inline-block bg-studio-text text-white px-8 py-4 rounded-xl font-bold hover:bg-studio-primary transition-colors duration-300 shadow-md"
               >
                 Book a Free Consultation

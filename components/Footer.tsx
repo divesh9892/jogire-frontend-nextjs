@@ -67,7 +67,7 @@ const navigation = {
     { name: "FAQ", href: "/#faq" },
   ],
   support: [
-    { name: "Book a Session", href: "/#book-session" },
+    { name: "Book a Session", href: "/book" },
     { name: "Contact Us", href: "/contact" },
     { name: "Privacy Policy", href: "/privacy" },
     { name: "Terms of Service", href: "/terms" },

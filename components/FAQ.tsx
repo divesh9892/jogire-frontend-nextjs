@@ -185,7 +185,7 @@ const FAQ = () => {
                 Email Support
               </a>
               <Link 
-                href="/#book-session" 
+                href="/book" 
                 className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-studio-primary text-white font-bold hover:bg-studio-accent transition-colors duration-300 shadow-md"
               >
                 Book Free Session

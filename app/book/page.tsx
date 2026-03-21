@@ -17,7 +17,7 @@ export default function BookSessionPage() {
           } 
         },
         hideEventTypeDetails: false,
-        layout: "week_view"
+        layout: "month_view"
       });
     })();
   }, []);
@@ -112,10 +112,10 @@ export default function BookSessionPage() {
           {/* Right Side: Cal.com Embed (Expanded to 3/4 width) */}
           <div className="w-full lg:w-3/4 p-2 md:p-6 min-h-[600px] flex items-center justify-center bg-white relative">
             <Cal 
-              calLink="divesh-sharma-3ssl2q/demo-class?layout=week_view&theme=light" 
+              calLink="divesh-sharma-3ssl2q/demo-class?layout=month_view&theme=light" 
               calOrigin="https://cal.eu" 
               style={{width:"100%", height:"100%", overflow:"scroll"}}
-              config={{layout: 'week_view', theme: 'light'}} 
+              config={{layout: 'month_view', theme: 'light'}} 
               className="w-full h-full rounded-xl"
             />
           </div>
