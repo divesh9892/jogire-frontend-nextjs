@@ -8,7 +8,7 @@ import Image from "next/image";
 const carouselData = [
   {
     id: 1,
-    src: "https://jogire.s3.ap-south-1.amazonaws.com/static/carousel/test2.jpg",
+    src: "https://d20ld9c13m2eci.cloudfront.net/static/carousel/test2.jpg",
     alt: "A peaceful yoga studio setup with natural lighting",
   },
   {
@@ -105,7 +105,6 @@ const Carousel = () => {
                 className="object-cover"
                 priority={index === 0} // Only preload the first image to save bandwidth
                 loading={index === 0 ? "eager" : "lazy"}
-                unoptimized={true}
               />
               {/* Dark Overlay for Text Readability */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />

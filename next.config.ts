@@ -1,16 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  allowedDevOrigins: [
-    "dfef-2409-40d4-40c8-9d7e-402b-4a26-3fc6-76e7.ngrok-free.app",
-    "localhost:10001",
-  ],
   images: {
+    // Allows SVG optimization, but neutralized by the security policy below
     dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    
+    // Bypass the Next.js 16 private IP block in development
+    dangerouslyAllowLocalIP: process.env.NODE_ENV === "development",
+    
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'jogire.s3.ap-south-1.amazonaws.com',
+        hostname: 'd20ld9c13m2eci.cloudfront.net', // Your Free AWS CDN!
         port: '',
         pathname: '/**',
       },

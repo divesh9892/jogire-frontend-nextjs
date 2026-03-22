@@ -43,7 +43,6 @@ export default function ContactPage() {
                 alt="Calm Texture"
                 fill
                 className="object-cover"
-                unoptimized={true}
               />
             </div>
             

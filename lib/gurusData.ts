@@ -3,7 +3,7 @@ export const gurusData = [
     id: 1,
     name: "Shiva (Adiyogi)",
     slug: "shiva-adiyogi",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/shiva.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/shiva.webp",
     subtitle: "The First Yogi",
     content: [
       {
@@ -42,7 +42,7 @@ export const gurusData = [
     id: 2,
     name: "Shakti (Adiyogini)",
     slug: "shakti-adiyogini",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/shakti.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/shakti.webp",
     subtitle: "The First Student of Yoga",
     content: [
       {
@@ -119,7 +119,7 @@ export const gurusData = [
     id: 3,
     name: "Krishna",
     slug: "krishna",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/krishna.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/krishna.webp",
     subtitle: "A Yogi & Bhogi of the highest order",
     content: [
       {
@@ -176,7 +176,7 @@ export const gurusData = [
     id: 4,
     name: "Guru Dattatreya",
     slug: "guru-dattatreya",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/dattatreya.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/dattatreya.webp",
     subtitle: "The Eternal Yogi and Embodiment of Divine Wisdom",
     content: [
       {
@@ -332,7 +332,7 @@ export const gurusData = [
     id: 5,
     name: "Maharishi Patanjali",
     slug: "maharishi-patanjali",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/patanjali.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/patanjali.webp",
     subtitle: "The Father of Classical Yoga",
     content: [
       {
@@ -414,7 +414,7 @@ export const gurusData = [
     id: 6,
     name: "Adi Shankaracharya",
     slug: "adi-shankaracharya",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/shankaracharya.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/shankaracharya.webp",
     subtitle: "The Sage Who United Vedanta and Yoga",
     content: [
       {
@@ -520,7 +520,7 @@ export const gurusData = [
     id: 7,
     name: "Guru Matsyendranath",
     slug: "guru-matsyendranath",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/matsyendranath.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/matsyendranath.webp",
     subtitle: "The Founder of Hatha Yoga",
     content: [
       {
@@ -593,7 +593,7 @@ export const gurusData = [
     id: 8,
     name: "Guru Gorakhnath",
     slug: "guru-gorakhnath",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/gorakhnath.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/gorakhnath.webp",
     subtitle: "Beacon of the Nath Sampradaya",
     content: [
       {
@@ -666,7 +666,7 @@ export const gurusData = [
     id: 9,
     name: "Guru Maharaj (Bavan Giri)",
     slug: "guru-maharaj-bavan-giri",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/gurumaharaj.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/gurumaharaj.webp",
     subtitle: "A Beacon of Spiritual Asceticism",
     content: [
       {
@@ -679,7 +679,7 @@ export const gurusData = [
     id: 10,
     name: "Pandit Shriram Sharma Acharya",
     slug: "pandit-shriram-sharma",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/ptshriramacharya.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/ptshriramacharya.webp",
     subtitle: "Founder of the All World Gayatri Pariwar",
     content: [
       {
@@ -711,7 +711,7 @@ export const gurusData = [
     id: 11,
     name: "& Many More",
     slug: "many-more",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/gurus/manymore.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/gurus/manymore.webp",
     subtitle: "The Infinite Lineage",
     content: [
       {

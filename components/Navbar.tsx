@@ -41,12 +41,11 @@ const Navbar = () => {
           <div className="relative h-12 w-32 flex-shrink-0">
             <Link href="/" className="relative block h-12 w-32">
               <Image
-                src="https://jogire.s3.ap-south-1.amazonaws.com/static/branding/logo.svg"
+                src="https://d20ld9c13m2eci.cloudfront.net/static/branding/logo.svg"
                 alt="Jogire Logo"
                 fill
                 className="object-contain"
                 sizes="128px"
-                unoptimized={true}
                 priority
               />
             </Link>
@@ -101,12 +100,11 @@ const Navbar = () => {
           {/* Centered Logo */}
           <Link href="/" onClick={() => setIsOpen(false)} className="relative block h-10 w-28">
             <Image
-              src="https://jogire.s3.ap-south-1.amazonaws.com/static/branding/logo.svg"
+              src="https://d20ld9c13m2eci.cloudfront.net/static/branding/logo.svg"
               alt="Jogire Logo"
               fill
               className="object-contain"
               sizes="112px"
-              unoptimized={true}
               priority
             />
           </Link>
@@ -142,12 +140,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between p-5 border-b border-gray-100 bg-studio-bg">
           <div className="relative h-8 w-24">
             <Image
-              src="https://jogire.s3.ap-south-1.amazonaws.com/static/branding/logo.svg"
+              src="https://d20ld9c13m2eci.cloudfront.net/static/branding/logo.svg"
               alt="Jogire Logo"
               fill
               className="object-contain"
               sizes="96px"
-              unoptimized={true}
             />
           </div>
           <button onClick={toggleMenu} className="p-2 text-gray-400 hover:text-studio-primary bg-white rounded-full shadow-sm active:scale-95 transition-all">

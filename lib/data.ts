@@ -53,7 +53,7 @@ export const teamData = [
     slug: "koushal-puri",
     role: "Founder",
     description: "An established holistic yoga teacher seamlessly integrating philosophy from the physical to the profound.",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/team/koushal.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/team/koushal.webp",
     quote: "A journey from a compulsive bhogi to a conscious bhogi.",
     credentials: [
       "M.Sc. in Human Consciousness & Yogic Science (DSVV)",
@@ -72,7 +72,7 @@ export const teamData = [
     slug: "dhawal-prajapati",
     role: "Co-Founder & Lead Coach",
     description: "A certified wellness coach helping people achieve a balanced lifestyle through mindful movement and meditation.",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/team/dhawal.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/team/dhawal.webp",
     quote: "Guiding you toward balance in mind, body, and spirit.",
     credentials: [
       "Master’s in Human Consciousness and Yogic Science",
@@ -91,7 +91,7 @@ export const teamData = [
     slug: "dr-divya-prabha",
     role: "Counselling Psychologist",
     description: "A counselling psychologist with 16+ years of experience empowering individuals and families through holistic care.",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/team/divya.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/team/divya.webp",
     quote: "Small steps every day.",
     credentials: [
       "Ph.D. in Psychology (Bharathiar University)",
@@ -110,7 +110,7 @@ export const teamData = [
     slug: "shashiranjan-giri",
     role: "Yoga Teacher & Astrologer",
     description: "Blending the wisdom of astrology with the discipline of yoga to guide individuals toward holistic balance.",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/team/sashi.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/team/sashi.webp",
     quote: "Aligning inner peace with cosmic wisdom.",
     credentials: [
       "Shastri in Jyotish",
@@ -129,7 +129,7 @@ export const teamData = [
     slug: "dr-ishant-vijay",
     role: "Sports Physiotherapist",
     description: "Dedicated to restoring movement, strength, and performance through evidence-based rehabilitative care.",
-    image: "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/team/ishant.webp",
+    image: "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/team/ishant.webp",
     quote: "Movement is medicine.",
     credentials: [
       "Master of Physiotherapy (MPT) in Sports & Rehab",

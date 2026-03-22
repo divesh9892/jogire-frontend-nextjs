@@ -22,7 +22,6 @@ export default function MissionPage() {
             sizes="100vw"
             className="object-cover object-center"
             priority
-            unoptimized={true}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-[#111827]/70 to-transparent z-10" />
         </div>
@@ -93,7 +92,6 @@ export default function MissionPage() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
-                unoptimized={true}
               />
               <div className="absolute inset-0 bg-studio-primary/10 mix-blend-multiply" />
             </div>

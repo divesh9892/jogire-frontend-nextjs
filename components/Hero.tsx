@@ -13,7 +13,7 @@ const heroSlides = [
   },
   {
     id: 2,
-    src: "https://jogire.s3.ap-south-1.amazonaws.com/static/carousel/test2.jpg",
+    src: "https://d20ld9c13m2eci.cloudfront.net/static/carousel/test2.jpg",
     alt: "A peaceful yoga studio setup with natural lighting",
   },
   {
@@ -101,7 +101,6 @@ const Hero = () => {
             className="object-cover object-center"
             priority={index === 0}
             loading={index === 0 ? "eager" : "lazy"}
-            unoptimized={true}
           />
         </div>
       ))}

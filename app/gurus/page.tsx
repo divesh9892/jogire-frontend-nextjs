@@ -43,7 +43,6 @@ export default function GurusPage() {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 group-focus:scale-105"
-                    unoptimized={true}
                   />
                   
                   {/* Desktop Only Dark Overlay */}

@@ -45,7 +45,6 @@ const Programs = () => {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-110 group-focus:scale-110"
-                    unoptimized={true}
                   />
                   {/* Format Badge (Replaces Category) */}
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-bold text-studio-text shadow-sm uppercase tracking-wider">

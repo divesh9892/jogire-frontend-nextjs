@@ -48,7 +48,6 @@ export default async function TeamMemberProfile({ params }: PageProps) {
               sizes="(max-width: 768px) 100vw, 40vw"
               className="object-cover object-top"
               priority
-              unoptimized={true}
             />
           </div>
 

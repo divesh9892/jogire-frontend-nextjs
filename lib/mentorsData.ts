@@ -3,9 +3,9 @@ export const mentorsData = {
   title: "Pro Vice-Chancellor, Dev Sanskriti Vishwavidyalaya",
   credentials: "(MBBS, PGDipl, MRCPsych – London)",
   images: [
-    "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/mentors/mentor2.webp",
-    "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/mentors/mentor1.webp",
-    "https://jogire.s3.ap-south-1.amazonaws.com/static/aboutus/mentors/mentor3.webp",
+    "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/mentors/mentor2.webp",
+    "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/mentors/mentor1.webp",
+    "https://d20ld9c13m2eci.cloudfront.net/static/aboutus/mentors/mentor3.webp",
   ],
   sections: [
     {

@@ -34,7 +34,6 @@ export default function BookSessionPage() {
             alt="Calm Atmosphere"
             fill
             className="object-cover"
-            unoptimized={true}
             priority
           />
         </div>

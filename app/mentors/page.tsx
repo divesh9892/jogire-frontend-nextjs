@@ -46,7 +46,6 @@ export default function MentorsPage() {
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-top"
                 priority
-                unoptimized={true}
               />
             </div>
             <div className="w-full lg:w-3/5 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
@@ -143,7 +142,6 @@ export default function MentorsPage() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover object-center"
-                unoptimized={true}
               />
             </div>
           </div>

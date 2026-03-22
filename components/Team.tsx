@@ -42,7 +42,6 @@ const Team = () => {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover object-top transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 group-focus:scale-105"
-                    unoptimized={true}
                   />
                   {/* Role Badge overlapping the image */}
                   <div className="absolute bottom-4 left-4 right-4 text-center">

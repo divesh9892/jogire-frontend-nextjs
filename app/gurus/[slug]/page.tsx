@@ -62,7 +62,6 @@ export default async function GuruProfilePage({ params }: PageProps) {
                 sizes="(max-width: 768px) 192px, 256px"
                 className="object-cover object-top"
                 priority
-                unoptimized={true}
               />
             </div>
             <div className="text-center md:text-left">

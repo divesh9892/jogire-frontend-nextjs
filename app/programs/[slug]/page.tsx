@@ -32,7 +32,6 @@ export default async function ProgramDetail({ params }: PageProps) {
             sizes="100vw"
             className="object-cover object-center"
             priority
-            unoptimized={true}
           />
           {/* Slightly darker gradient at the bottom so the white card pops more */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30 z-10" />
