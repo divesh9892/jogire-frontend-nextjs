@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import Footer from "@/components/Footer";
+import { ClerkProvider } from '@clerk/nextjs'
 
 // Load Geist fonts with CSS variables for Tailwind integration
 const geistSans = Geist({
@@ -38,6 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <html
       lang="en"
       // Added scroll-smooth for anchor links and antialiased for crisp typography
@@ -62,5 +64,6 @@ export default function RootLayout({
         
       </body>
     </html>
+    </ClerkProvider>
   );
 }
