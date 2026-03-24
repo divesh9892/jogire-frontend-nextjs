@@ -55,3 +55,29 @@ export async function updateInquiryAction(id: string, payload: { status?: string
   
   return res.json();
 }
+
+export async function updateBookingAction(id: string, payload: { attended?: boolean; crm_status?: string; new_note?: string }) {
+  const { getToken } = await auth();
+  const token = await getToken();
+
+  if (!token) throw new Error("Unauthorized");
+
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/admin/bookings/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to update booking");
+  }
+
+  // Instantly clear the Next.js cache so the UI updates without a page refresh
+  revalidatePath(`/admin/bookings/${id}`);
+  revalidatePath(`/admin/bookings`);
+  
+  return res.json();
+}
