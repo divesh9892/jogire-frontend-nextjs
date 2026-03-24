@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 import Footer from "@/components/Footer";
+import ServerWakeup from "@/components/ServerWakeup"
 import { ClerkProvider } from '@clerk/nextjs'
 
 // Load Geist fonts with CSS variables for Tailwind integration
@@ -51,7 +52,7 @@ export default function RootLayout({
         // text-studio-text ensures the default text is our soft charcoal
         className="min-h-full flex flex-col bg-studio-bg text-studio-text overflow-x-hidden selection:bg-studio-primary/20 selection:text-studio-primary"
       >
-        
+        <ServerWakeup />
         {/* Main Content Area */}
         <div className="flex-grow flex flex-col">
           {children}
