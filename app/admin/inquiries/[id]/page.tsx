@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { fetchAdminData } from "@/app/admin/actions";
+import InquiryActionForm from "./InquiryActionForm";
 import { format } from "date-fns";
 import { 
   ArrowLeft, 
@@ -116,7 +117,30 @@ export default async function InquiryDetailPage({
             </div>
             <div className="p-6">
               {inquiry.internal_notes ? (
-                <p className="text-amber-900 whitespace-pre-wrap">{inquiry.internal_notes}</p>
+                <div className="space-y-4">
+                  {inquiry.internal_notes.split('\n\n---\n\n').map((note: string, index: number) => {
+                    // Extract the [Timestamp] AdminName: part using regex
+                    const match = note.match(/^\[(.*?)\] (.*?): ([\s\S]*)$/);
+                    
+                    if (match) {
+                      return (
+                        <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
+                          <div className="flex justify-between items-center mb-2 pb-2 border-b border-amber-200/50">
+                            <span className="text-xs font-bold text-amber-900">{match[2]}</span>
+                            <span className="text-xs text-amber-700/80">{match[1]}</span>
+                          </div>
+                          <p className="text-sm text-amber-900 whitespace-pre-wrap">{match[3]}</p>
+                        </div>
+                      );
+                    }
+                    // Fallback for older notes before we added the new formatting
+                    return (
+                      <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
+                        <p className="text-sm text-amber-900 whitespace-pre-wrap">{note}</p>
+                      </div>
+                    );
+                  })}
+                </div>
               ) : (
                 <p className="text-amber-700/60 italic text-sm">No internal notes added yet.</p>
               )}
@@ -150,12 +174,12 @@ export default async function InquiryDetailPage({
                 </a>
               )}
 
-              {/* Placeholder for future interactivity */}
-              <div className="pt-4 mt-4 border-t border-gray-100">
-                 <button className="w-full inline-flex items-center justify-center px-4 py-2.5 border border-gray-300 text-sm font-medium rounded-lg text-gray-700 bg-gray-50 hover:bg-gray-100 transition-colors">
-                   Update Status / Add Note
-                 </button>
-              </div>
+              {/* THE LIVE ACTION FORM */}
+              <InquiryActionForm 
+                inquiryId={inquiry.id} 
+                currentStatus={inquiry.status} 
+              />
+              
             </div>
           </section>
 
