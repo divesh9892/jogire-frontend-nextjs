@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchAdminData } from "@/app/admin/actions";
 import { format } from "date-fns";
+import { formatInTimeZone } from 'date-fns-tz';
 import { CheckCircle2, XCircle, AlertCircle, Calendar, Search, Filter, ChevronLeft, ChevronRight, ArrowUpDown } from "lucide-react";
 
 export const dynamic = 'force-dynamic';
@@ -109,9 +110,13 @@ export default async function AllBookingsPage({
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
-                    <div className="font-medium text-gray-900">{format(new Date(booking.start_time), "MMM d, yyyy")}</div>
-                    <div className="text-gray-500">{format(new Date(booking.start_time), "h:mm a")}</div>
-                  </td>
+  <div className="font-medium text-gray-900">
+    {formatInTimeZone(new Date(booking.start_time), 'Asia/Kolkata', "MMM d, yyyy")}
+  </div>
+  <div className="text-gray-500">
+    {formatInTimeZone(new Date(booking.start_time), 'Asia/Kolkata', "h:mm a")}
+  </div>
+</td>
                   <td className="px-6 py-4">
                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${
                       booking.status === 'ACCEPTED' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' :

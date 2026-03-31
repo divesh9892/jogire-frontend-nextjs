@@ -2,6 +2,7 @@ import Link from "next/link";
 import { fetchAdminData } from "@/app/admin/actions";
 import { format, differenceInMinutes, isPast } from "date-fns";
 import BookingActionForm from "./BookingActionForm";
+import { formatInTimeZone } from 'date-fns-tz';
 import { 
   ArrowLeft, 
   Calendar, 
@@ -126,9 +127,13 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
               <div className="md:col-span-2 p-4 bg-gray-50 rounded-xl border border-gray-100 flex items-center gap-4">
                 <div className="p-3 bg-white rounded-lg shadow-sm"><Clock className="w-6 h-6 text-emerald-600" /></div>
                 <div>
-                  <p className="font-bold text-gray-900 text-lg">{format(startTime, "EEEE, MMMM do, yyyy")}</p>
-                  <p className="text-gray-600">{format(startTime, "h:mm a")} - {format(endTime, "h:mm a")} ({duration} mins)</p>
-                </div>
+  <p className="font-bold text-gray-900 text-lg">
+    {formatInTimeZone(startTime, 'Asia/Kolkata', "EEEE, MMMM do, yyyy")}
+  </p>
+  <p className="text-gray-600">
+    {formatInTimeZone(startTime, 'Asia/Kolkata', "h:mm a")} - {formatInTimeZone(endTime, 'Asia/Kolkata', "h:mm a")} ({duration} mins)
+  </p>
+</div>
               </div>
 
               <div className="md:col-span-2 p-4 bg-blue-50/50 rounded-xl border border-blue-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -193,32 +198,41 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
               <span className="text-xs font-medium text-amber-700 bg-amber-200/50 px-2 py-1 rounded-md">Admin Only</span>
             </div>
             <div className="p-6">
-              {booking.internal_notes ? (
-                <div className="space-y-4">
-                  {booking.internal_notes.split('\n\n---\n\n').map((note: string, index: number) => {
-                    const match = note.match(/^\[(.*?)\] (.*?): ([\s\S]*)$/);
-                    if (match) {
-                      return (
-                        <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
-                          <div className="flex justify-between items-center mb-2 pb-2 border-b border-amber-200/50">
-                            <span className="text-xs font-bold text-amber-900">{match[2]}</span>
-                            <span className="text-xs text-amber-700/80">{match[1]}</span>
-                          </div>
-                          <p className="text-sm text-amber-900 whitespace-pre-wrap">{match[3]}</p>
-                        </div>
-                      );
-                    }
-                    return (
-                      <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
-                        <p className="text-sm text-amber-900 whitespace-pre-wrap">{note}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <p className="text-amber-700/60 italic text-sm">No internal notes or timeline events yet.</p>
-              )}
+  {booking.internal_notes ? (
+    <div className="space-y-4">
+      {booking.internal_notes.split('\n\n---\n\n').map((note: string, index: number) => {
+        const match = note.match(/^\[(.*?)\] (.*?): ([\s\S]*)$/);
+        if (match) {
+          let displayTime = match[1]; 
+          
+          // Remove the hyphen to ensure safe parsing by the JavaScript Date object
+          const parsedDate = new Date(match[1].replace(' - ', ' '));
+          
+          if (!isNaN(parsedDate.getTime())) {
+            displayTime = formatInTimeZone(parsedDate, 'Asia/Kolkata', "MMM d, yyyy - HH:mm 'IST'");
+          }
+
+          return (
+            <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
+              <div className="flex justify-between items-center mb-2 pb-2 border-b border-amber-200/50">
+                <span className="text-xs font-bold text-amber-900">{match[2]}</span>
+                <span className="text-xs text-amber-700/80">{displayTime}</span>
+              </div>
+              <p className="text-sm text-amber-900 whitespace-pre-wrap">{match[3]}</p>
             </div>
+          );
+        }
+        return (
+          <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
+            <p className="text-sm text-amber-900 whitespace-pre-wrap">{note}</p>
+          </div>
+        );
+      })}
+    </div>
+  ) : (
+    <p className="text-amber-700/60 italic text-sm">No internal notes or timeline events yet.</p>
+  )}
+</div>
           </section>
 
         </div>
@@ -258,7 +272,11 @@ export default async function BookingDetailPage({ params }: { params: Promise<{ 
             <div className="p-6 space-y-4">
               <div><p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Internal UUID</p><p className="text-sm font-mono text-gray-700 truncate" title={booking.id}>{booking.id}</p></div>
               <div><p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Cal.com Event UID</p><p className="text-sm font-mono text-gray-700 truncate" title={booking.cal_booking_uid}>{booking.cal_booking_uid}</p></div>
-              <div><p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Synced At</p><p className="text-sm text-gray-700">{booking.created_at ? format(new Date(booking.created_at), "MMM d, yyyy - HH:mm:ss") : "Unknown"}</p></div>
+              <div><p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1">Synced At</p><p className="text-sm text-gray-700">
+  {booking.created_at 
+    ? formatInTimeZone(new Date(booking.created_at), 'Asia/Kolkata', "MMM d, yyyy - HH:mm:ss") 
+    : "Unknown"}
+</p></div>
             </div>
           </section>
 

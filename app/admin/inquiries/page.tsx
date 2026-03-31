@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchAdminData } from "@/app/admin/actions";
 import { format } from "date-fns";
+import { formatInTimeZone } from 'date-fns-tz';
 import { 
   MessageSquare, 
   Search, 
@@ -117,9 +118,13 @@ export default async function AllInquiriesPage({
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-gray-600">
-                    <div className="font-medium text-gray-900">{format(new Date(inquiry.created_at), "MMM d, yyyy")}</div>
-                    <div className="text-gray-500">{format(new Date(inquiry.created_at), "h:mm a")}</div>
-                  </td>
+  <div className="font-medium text-gray-900">
+    {formatInTimeZone(new Date(inquiry.created_at), 'Asia/Kolkata', "MMM d, yyyy")}
+  </div>
+  <div className="text-gray-500">
+    {formatInTimeZone(new Date(inquiry.created_at), 'Asia/Kolkata', "h:mm a")}
+  </div>
+</td>
                   <td className="px-6 py-4">
                      <span className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${
                       inquiry.status === 'unread' ? 'bg-blue-100 text-blue-800 border border-blue-200' :

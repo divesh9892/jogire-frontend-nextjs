@@ -1,6 +1,7 @@
 import { fetchAdminData } from "./actions";
 import Link from "next/link";
 import { format } from "date-fns";
+import { formatInTimeZone } from 'date-fns-tz';
 import { 
   CalendarDays, 
   MessageSquare, 
@@ -124,8 +125,8 @@ export default async function AdminDashboard() {
                     {item.client_name}
                   </Link>
                   <p className="text-sm text-blue-700/80">
-                    {item.event_type} • Met on {format(new Date(item.start_time), "MMM do")}
-                  </p>
+  {item.event_type} • Met on {formatInTimeZone(new Date(item.start_time), 'Asia/Kolkata', "MMM do")}
+</p>
                 </div>
                 <Link 
                   href={`/admin/bookings/${item.id}`} 
@@ -175,9 +176,13 @@ export default async function AdminDashboard() {
                       <div className="text-sm text-gray-500 truncate max-w-[150px]">{booking.event_type}</div>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-600">
-                      <div className="font-medium text-gray-900">{format(new Date(booking.start_time), "MMM d")}</div>
-                      <div className="text-gray-500">{format(new Date(booking.start_time), "h:mm a")}</div>
-                    </td>
+  <div className="font-medium text-gray-900">
+    {formatInTimeZone(new Date(booking.start_time), 'Asia/Kolkata', "MMM d")}
+  </div>
+  <div className="text-gray-500">
+    {formatInTimeZone(new Date(booking.start_time), 'Asia/Kolkata', "h:mm a")}
+  </div>
+</td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-bold border ${
                         booking.crm_status === 'CONVERTED' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
@@ -220,7 +225,9 @@ export default async function AdminDashboard() {
                       <Link href={`/admin/inquiries/${inquiry.id}`} className="font-bold text-gray-900 hover:text-blue-600 hover:underline">
                         {inquiry.name}
                       </Link>
-                      <div className="text-sm text-gray-500">{format(new Date(inquiry.created_at), "MMM d")}</div>
+                      <div className="text-sm text-gray-500">
+  {formatInTimeZone(new Date(inquiry.created_at), 'Asia/Kolkata', "MMM d")}
+</div>
                     </td>
                     <td className="px-6 py-4 text-sm text-gray-600">
                       {inquiry.service_interest || "General"}

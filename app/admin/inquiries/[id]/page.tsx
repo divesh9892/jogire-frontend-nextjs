@@ -2,6 +2,7 @@ import Link from "next/link";
 import { fetchAdminData } from "@/app/admin/actions";
 import InquiryActionForm from "./InquiryActionForm";
 import { format } from "date-fns";
+import { formatInTimeZone } from 'date-fns-tz';
 import { 
   ArrowLeft, 
   Mail, 
@@ -56,7 +57,9 @@ export default async function InquiryDetailPage({
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Inquiry Details</h1>
-            <p className="text-gray-500 mt-1">Received {format(new Date(inquiry.created_at), "MMMM do, yyyy 'at' h:mm a")}</p>
+            <p className="text-gray-500 mt-1">
+  Received {formatInTimeZone(new Date(inquiry.created_at), 'Asia/Kolkata', "MMMM do, yyyy 'at' h:mm a")}
+</p>
           </div>
           <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold shadow-sm border ${
             isUnread ? 'bg-blue-50 text-blue-700 border-blue-200' :
@@ -116,35 +119,46 @@ export default async function InquiryDetailPage({
               <span className="text-xs font-medium text-amber-700 bg-amber-200/50 px-2 py-1 rounded-md">Admin Only</span>
             </div>
             <div className="p-6">
-              {inquiry.internal_notes ? (
-                <div className="space-y-4">
-                  {inquiry.internal_notes.split('\n\n---\n\n').map((note: string, index: number) => {
-                    // Extract the [Timestamp] AdminName: part using regex
-                    const match = note.match(/^\[(.*?)\] (.*?): ([\s\S]*)$/);
-                    
-                    if (match) {
-                      return (
-                        <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
-                          <div className="flex justify-between items-center mb-2 pb-2 border-b border-amber-200/50">
-                            <span className="text-xs font-bold text-amber-900">{match[2]}</span>
-                            <span className="text-xs text-amber-700/80">{match[1]}</span>
-                          </div>
-                          <p className="text-sm text-amber-900 whitespace-pre-wrap">{match[3]}</p>
-                        </div>
-                      );
-                    }
-                    // Fallback for older notes before we added the new formatting
-                    return (
-                      <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
-                        <p className="text-sm text-amber-900 whitespace-pre-wrap">{note}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : (
-                <p className="text-amber-700/60 italic text-sm">No internal notes added yet.</p>
-              )}
+  {inquiry.internal_notes ? (
+    <div className="space-y-4">
+      {inquiry.internal_notes.split('\n\n---\n\n').map((note: string, index: number) => {
+        // Extract the [Timestamp] AdminName: part using regex
+        const match = note.match(/^\[(.*?)\] (.*?): ([\s\S]*)$/);
+        
+        if (match) {
+          let displayTime = match[1]; // Default to raw string
+          
+          // Clean the string (e.g., "Mar 29, 2026 - 16:46 UTC" -> "Mar 29, 2026 16:46 UTC") for reliable parsing
+          const parsedDate = new Date(match[1].replace(' - ', ' '));
+          
+          // Only format if the date parsed successfully
+          if (!isNaN(parsedDate.getTime())) {
+            displayTime = formatInTimeZone(parsedDate, 'Asia/Kolkata', "MMM d, yyyy - HH:mm 'IST'");
+          }
+
+          return (
+            <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
+              <div className="flex justify-between items-center mb-2 pb-2 border-b border-amber-200/50">
+                <span className="text-xs font-bold text-amber-900">{match[2]}</span>
+                {/* Replaced match[1] with our new displayTime */}
+                <span className="text-xs text-amber-700/80">{displayTime}</span>
+              </div>
+              <p className="text-sm text-amber-900 whitespace-pre-wrap">{match[3]}</p>
             </div>
+          );
+        }
+        // Fallback for older notes before we added the new formatting
+        return (
+          <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
+            <p className="text-sm text-amber-900 whitespace-pre-wrap">{note}</p>
+          </div>
+        );
+      })}
+    </div>
+  ) : (
+    <p className="text-amber-700/60 italic text-sm">No internal notes added yet.</p>
+  )}
+</div>
           </section>
 
         </div>
@@ -205,8 +219,8 @@ export default async function InquiryDetailPage({
                 <div>
                   <p className="text-xs font-medium text-emerald-600 uppercase tracking-wider mb-1 flex items-center gap-1"><CheckCircle2 className="w-3 h-3"/> Resolved At</p>
                   <p className="text-sm text-gray-700">
-                    {format(new Date(inquiry.resolved_at), "MMM d, yyyy - HH:mm")}
-                  </p>
+  {formatInTimeZone(new Date(inquiry.resolved_at), 'Asia/Kolkata', "MMM d, yyyy - HH:mm")}
+</p>
                 </div>
               )}
             </div>
