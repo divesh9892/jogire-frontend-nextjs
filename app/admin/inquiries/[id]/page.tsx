@@ -2,29 +2,25 @@ import Link from "next/link";
 import { fetchAdminData } from "@/app/admin/actions";
 import InquiryActionForm from "./InquiryActionForm";
 import { format } from "date-fns";
-import { formatInTimeZone } from 'date-fns-tz';
-import { 
-  ArrowLeft, 
-  Mail, 
-  Phone, 
-  Clock, 
-  CheckCircle2, 
-  CircleDashed, 
+import { formatInTimeZone } from "date-fns-tz";
+import {
+  ArrowLeft,
+  Mail,
+  Phone,
+  Clock,
+  CheckCircle2,
+  CircleDashed,
   MailOpen,
   Globe,
   ShieldAlert,
   MessageSquare,
   FileText,
-  User
+  User,
 } from "lucide-react";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
-export default async function InquiryDetailPage({ 
-  params 
-}: { 
-  params: Promise<{ id: string }> 
-}) {
+export default async function InquiryDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   let inquiry;
@@ -32,8 +28,8 @@ export default async function InquiryDetailPage({
     inquiry = await fetchAdminData(`/api/v1/admin/inquiries/${id}`);
   } catch (error) {
     return (
-      <div className="flex flex-col items-center justify-center h-96 text-gray-500">
-        <ShieldAlert className="w-12 h-12 text-red-400 mb-4" />
+      <div className="flex h-96 flex-col items-center justify-center text-gray-500">
+        <ShieldAlert className="mb-4 h-12 w-12 text-red-400" />
         <h2 className="text-xl font-bold text-gray-900">Inquiry Not Found</h2>
         <p className="mt-2">This message may have been deleted or the ID is invalid.</p>
         <Link href="/admin/inquiries" className="mt-6 text-blue-600 hover:underline">
@@ -43,189 +39,223 @@ export default async function InquiryDetailPage({
     );
   }
 
-  const isUnread = inquiry.status === 'unread';
-  const isResolved = inquiry.status === 'resolved';
+  const isUnread = inquiry.status === "unread";
+  const isResolved = inquiry.status === "resolved";
 
   return (
-    <div className="animate-in fade-in duration-500 max-w-5xl mx-auto">
+    <div className="animate-in fade-in mx-auto max-w-5xl duration-500">
       {/* --- HEADER --- */}
       <div className="mb-8">
-        <Link href="/admin/inquiries" className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-900 mb-4 transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-2" />
+        <Link
+          href="/admin/inquiries"
+          className="mb-4 inline-flex items-center text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+        >
+          <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Inbox
         </Link>
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Inquiry Details</h1>
-            <p className="text-gray-500 mt-1">
-  Received {formatInTimeZone(new Date(inquiry.created_at), 'Asia/Kolkata', "MMMM do, yyyy 'at' h:mm a")}
-</p>
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Inquiry Details</h1>
+            <p className="mt-1 text-gray-500">
+              Received{" "}
+              {formatInTimeZone(
+                new Date(inquiry.created_at),
+                "Asia/Kolkata",
+                "MMMM do, yyyy 'at' h:mm a"
+              )}
+            </p>
           </div>
-          <span className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold shadow-sm border ${
-            isUnread ? 'bg-blue-50 text-blue-700 border-blue-200' :
-            isResolved ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-            'bg-gray-50 text-gray-700 border-gray-200'
-          }`}>
-            {isUnread ? <CircleDashed className="w-5 h-5"/> : 
-             isResolved ? <CheckCircle2 className="w-5 h-5"/> : <MailOpen className="w-5 h-5"/>}
+          <span
+            className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold shadow-sm ${
+              isUnread
+                ? "border-blue-200 bg-blue-50 text-blue-700"
+                : isResolved
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                  : "border-gray-200 bg-gray-50 text-gray-700"
+            }`}
+          >
+            {isUnread ? (
+              <CircleDashed className="h-5 w-5" />
+            ) : isResolved ? (
+              <CheckCircle2 className="h-5 w-5" />
+            ) : (
+              <MailOpen className="h-5 w-5" />
+            )}
             <span className="capitalize">{inquiry.status}</span>
           </span>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
         {/* LEFT COLUMN: Message & Contact */}
-        <div className="lg:col-span-2 space-y-8">
-          
+        <div className="space-y-8 lg:col-span-2">
           {/* Section: The Message */}
-          <section className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-            <div className="px-6 py-5 border-b border-gray-100 bg-gray-50/30 flex items-center gap-2">
-              <MessageSquare className="w-5 h-5 text-gray-500" />
+          <section className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+            <div className="flex items-center gap-2 border-b border-gray-100 bg-gray-50/30 px-6 py-5">
+              <MessageSquare className="h-5 w-5 text-gray-500" />
               <h2 className="text-lg font-semibold text-gray-900">Client Message</h2>
             </div>
             <div className="p-6">
-              <div className="mb-6 pb-6 border-b border-gray-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="mb-6 flex flex-col justify-between gap-4 border-b border-gray-100 pb-6 sm:flex-row sm:items-center">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center text-blue-700 text-lg font-bold shrink-0">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 text-lg font-bold text-blue-700">
                     {inquiry.name.charAt(0).toUpperCase()}
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 text-lg">{inquiry.name}</h3>
-                    <p className="text-sm text-gray-500 flex items-center gap-1">
-                      <Mail className="w-3 h-3" /> {inquiry.email}
+                    <h3 className="text-lg font-bold text-gray-900">{inquiry.name}</h3>
+                    <p className="flex items-center gap-1 text-sm text-gray-500">
+                      <Mail className="h-3 w-3" /> {inquiry.email}
                     </p>
                   </div>
                 </div>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 border border-gray-200">
+                <span className="inline-flex items-center rounded-full border border-gray-200 bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
                   Interest: {inquiry.service_interest || "General"}
                 </span>
               </div>
-              
+
               {/* The actual message content */}
-              <div className="prose prose-blue max-w-none text-gray-700 whitespace-pre-wrap">
+              <div className="prose prose-blue max-w-none whitespace-pre-wrap text-gray-700">
                 {inquiry.message}
               </div>
             </div>
           </section>
 
           {/* Section: Internal Notes (CRM Feature) */}
-          <section className="bg-amber-50 rounded-2xl border border-amber-200 shadow-sm overflow-hidden">
-            <div className="px-6 py-4 border-b border-amber-200 bg-amber-100/50 flex justify-between items-center">
+          <section className="overflow-hidden rounded-2xl border border-amber-200 bg-amber-50 shadow-sm">
+            <div className="flex items-center justify-between border-b border-amber-200 bg-amber-100/50 px-6 py-4">
               <div className="flex items-center gap-2">
-                <FileText className="w-5 h-5 text-amber-700" />
+                <FileText className="h-5 w-5 text-amber-700" />
                 <h2 className="text-lg font-semibold text-amber-900">Internal Notes</h2>
               </div>
-              <span className="text-xs font-medium text-amber-700 bg-amber-200/50 px-2 py-1 rounded-md">Admin Only</span>
+              <span className="rounded-md bg-amber-200/50 px-2 py-1 text-xs font-medium text-amber-700">
+                Admin Only
+              </span>
             </div>
             <div className="p-6">
-  {inquiry.internal_notes ? (
-    <div className="space-y-4">
-      {inquiry.internal_notes.split('\n\n---\n\n').map((note: string, index: number) => {
-        // Extract the [Timestamp] AdminName: part using regex
-        const match = note.match(/^\[(.*?)\] (.*?): ([\s\S]*)$/);
-        
-        if (match) {
-          let displayTime = match[1]; // Default to raw string
-          
-          // Clean the string (e.g., "Mar 29, 2026 - 16:46 UTC" -> "Mar 29, 2026 16:46 UTC") for reliable parsing
-          const parsedDate = new Date(match[1].replace(' - ', ' '));
-          
-          // Only format if the date parsed successfully
-          if (!isNaN(parsedDate.getTime())) {
-            displayTime = formatInTimeZone(parsedDate, 'Asia/Kolkata', "MMM d, yyyy - HH:mm 'IST'");
-          }
+              {inquiry.internal_notes ? (
+                <div className="space-y-4">
+                  {inquiry.internal_notes
+                    .split("\n\n---\n\n")
+                    .map((note: string, index: number) => {
+                      // Extract the [Timestamp] AdminName: part using regex
+                      const match = note.match(/^\[(.*?)\] (.*?): ([\s\S]*)$/);
 
-          return (
-            <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
-              <div className="flex justify-between items-center mb-2 pb-2 border-b border-amber-200/50">
-                <span className="text-xs font-bold text-amber-900">{match[2]}</span>
-                {/* Replaced match[1] with our new displayTime */}
-                <span className="text-xs text-amber-700/80">{displayTime}</span>
-              </div>
-              <p className="text-sm text-amber-900 whitespace-pre-wrap">{match[3]}</p>
+                      if (match) {
+                        let displayTime = match[1]; // Default to raw string
+
+                        // Clean the string (e.g., "Mar 29, 2026 - 16:46 UTC" -> "Mar 29, 2026 16:46 UTC") for reliable parsing
+                        const parsedDate = new Date(match[1].replace(" - ", " "));
+
+                        // Only format if the date parsed successfully
+                        if (!isNaN(parsedDate.getTime())) {
+                          displayTime = formatInTimeZone(
+                            parsedDate,
+                            "Asia/Kolkata",
+                            "MMM d, yyyy - HH:mm 'IST'"
+                          );
+                        }
+
+                        return (
+                          <div
+                            key={index}
+                            className="rounded-xl border border-amber-200/50 bg-amber-100/50 p-4"
+                          >
+                            <div className="mb-2 flex items-center justify-between border-b border-amber-200/50 pb-2">
+                              <span className="text-xs font-bold text-amber-900">{match[2]}</span>
+                              {/* Replaced match[1] with our new displayTime */}
+                              <span className="text-xs text-amber-700/80">{displayTime}</span>
+                            </div>
+                            <p className="text-sm whitespace-pre-wrap text-amber-900">{match[3]}</p>
+                          </div>
+                        );
+                      }
+                      // Fallback for older notes before we added the new formatting
+                      return (
+                        <div
+                          key={index}
+                          className="rounded-xl border border-amber-200/50 bg-amber-100/50 p-4"
+                        >
+                          <p className="text-sm whitespace-pre-wrap text-amber-900">{note}</p>
+                        </div>
+                      );
+                    })}
+                </div>
+              ) : (
+                <p className="text-sm text-amber-700/60 italic">No internal notes added yet.</p>
+              )}
             </div>
-          );
-        }
-        // Fallback for older notes before we added the new formatting
-        return (
-          <div key={index} className="bg-amber-100/50 p-4 rounded-xl border border-amber-200/50">
-            <p className="text-sm text-amber-900 whitespace-pre-wrap">{note}</p>
-          </div>
-        );
-      })}
-    </div>
-  ) : (
-    <p className="text-amber-700/60 italic text-sm">No internal notes added yet.</p>
-  )}
-</div>
           </section>
-
         </div>
 
         {/* RIGHT COLUMN: Metadata & Actions */}
         <div className="space-y-8">
-          
           {/* Quick Actions Card */}
-          <section className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-             <div className="px-6 py-5 border-b border-gray-100 bg-gray-50/30">
+          <section className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+            <div className="border-b border-gray-100 bg-gray-50/30 px-6 py-5">
               <h2 className="text-lg font-semibold text-gray-900">Actions</h2>
             </div>
-            <div className="p-6 space-y-3">
-              <a 
-                href={`mailto:${inquiry.email}?subject=Re: Your inquiry regarding ${inquiry.service_interest || 'our services'}`}
-                className="w-full inline-flex items-center justify-center px-4 py-2.5 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
+            <div className="space-y-3 p-6">
+              <a
+                href={`mailto:${inquiry.email}?subject=Re: Your inquiry regarding ${inquiry.service_interest || "our services"}`}
+                className="inline-flex w-full items-center justify-center rounded-lg border border-transparent bg-blue-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm transition-colors hover:bg-blue-700"
               >
-                <Mail className="w-4 h-4 mr-2" /> Reply via Email
+                <Mail className="mr-2 h-4 w-4" /> Reply via Email
               </a>
-              
+
               {inquiry.phone && (
-                <a 
+                <a
                   href={`tel:${inquiry.phone}`}
-                  className="w-full inline-flex items-center justify-center px-4 py-2.5 border border-gray-300 text-sm font-medium rounded-lg shadow-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors"
+                  className="inline-flex w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50"
                 >
-                  <Phone className="w-4 h-4 mr-2" /> Call {inquiry.phone}
+                  <Phone className="mr-2 h-4 w-4" /> Call {inquiry.phone}
                 </a>
               )}
 
               {/* THE LIVE ACTION FORM */}
-              <InquiryActionForm 
-                inquiryId={inquiry.id} 
-                currentStatus={inquiry.status} 
-              />
-              
+              <InquiryActionForm inquiryId={inquiry.id} currentStatus={inquiry.status} />
             </div>
           </section>
 
           {/* Metadata Card */}
-          <section className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-             <div className="px-6 py-5 border-b border-gray-100 bg-gray-50/30">
+          <section className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+            <div className="border-b border-gray-100 bg-gray-50/30 px-6 py-5">
               <h2 className="text-lg font-semibold text-gray-900">Metadata</h2>
             </div>
-            <div className="p-6 space-y-4">
+            <div className="space-y-4 p-6">
               <div>
-                <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1"><User className="w-3 h-3"/> Internal UUID</p>
-                <p className="text-sm font-mono text-gray-700 truncate" title={inquiry.id}>{inquiry.id}</p>
+                <p className="mb-1 flex items-center gap-1 text-xs font-medium tracking-wider text-gray-500 uppercase">
+                  <User className="h-3 w-3" /> Internal UUID
+                </p>
+                <p className="truncate font-mono text-sm text-gray-700" title={inquiry.id}>
+                  {inquiry.id}
+                </p>
               </div>
-              
+
               {inquiry.ip_address && (
                 <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-1 flex items-center gap-1"><Globe className="w-3 h-3"/> IP Address</p>
-                  <p className="text-sm font-mono text-gray-700">{inquiry.ip_address}</p>
+                  <p className="mb-1 flex items-center gap-1 text-xs font-medium tracking-wider text-gray-500 uppercase">
+                    <Globe className="h-3 w-3" /> IP Address
+                  </p>
+                  <p className="font-mono text-sm text-gray-700">{inquiry.ip_address}</p>
                 </div>
               )}
 
               {inquiry.resolved_at && (
                 <div>
-                  <p className="text-xs font-medium text-emerald-600 uppercase tracking-wider mb-1 flex items-center gap-1"><CheckCircle2 className="w-3 h-3"/> Resolved At</p>
+                  <p className="mb-1 flex items-center gap-1 text-xs font-medium tracking-wider text-emerald-600 uppercase">
+                    <CheckCircle2 className="h-3 w-3" /> Resolved At
+                  </p>
                   <p className="text-sm text-gray-700">
-  {formatInTimeZone(new Date(inquiry.resolved_at), 'Asia/Kolkata', "MMM d, yyyy - HH:mm")}
-</p>
+                    {formatInTimeZone(
+                      new Date(inquiry.resolved_at),
+                      "Asia/Kolkata",
+                      "MMM d, yyyy - HH:mm"
+                    )}
+                  </p>
                 </div>
               )}
             </div>
           </section>
-
         </div>
       </div>
     </div>

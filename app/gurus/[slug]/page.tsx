@@ -12,7 +12,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps) {
   const resolvedParams = await params;
   const guru = gurusData.find((g) => g.slug === resolvedParams.slug);
-  
+
   if (!guru) return { title: "Guru Not Found" };
   const snippet = guru.content[0]?.text || "Discover the timeless wisdom of this spiritual master.";
 
@@ -31,30 +31,38 @@ export default async function GuruProfilePage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-studio-bg flex flex-col">
+    <main className="bg-studio-bg flex min-h-screen flex-col">
       <Navbar />
 
       {/* Aesthetic Top Background Banner */}
-      <div className="absolute top-0 left-0 w-full h-[60vh] bg-[#111827] z-0 rounded-b-[4rem]" />
+      <div className="absolute top-0 left-0 z-0 h-[60vh] w-full rounded-b-[4rem] bg-[#111827]" />
 
-      <section className="relative z-10 pt-24 pb-24 px-6 md:px-12 max-w-5xl mx-auto flex-grow">
-        
+      <section className="relative z-10 mx-auto max-w-5xl flex-grow px-6 pt-24 pb-24 md:px-12">
         {/* Navigation Back */}
-        <Link 
-          href="/gurus" 
-          className="inline-flex items-center text-gray-300 hover:text-white transition-colors mb-10 text-sm font-bold tracking-wider uppercase group"
+        <Link
+          href="/gurus"
+          className="group mb-10 inline-flex items-center text-sm font-bold tracking-wider text-gray-300 uppercase transition-colors hover:text-white"
         >
-          <svg className="w-5 h-5 mr-2 transform transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          <svg
+            className="mr-2 h-5 w-5 transform transition-transform group-hover:-translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
           </svg>
           Back to Gurus
         </Link>
 
-        <div className="bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden">
-          
+        <div className="overflow-hidden rounded-[2.5rem] border border-gray-100 bg-white shadow-2xl">
           {/* Hero Header for the Guru */}
-          <div className="flex flex-col md:flex-row items-center p-8 md:p-12 lg:p-16 border-b border-gray-100 bg-orange-50/30">
-            <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg flex-shrink-0 mb-8 md:mb-0 md:mr-12">
+          <div className="flex flex-col items-center border-b border-gray-100 bg-orange-50/30 p-8 md:flex-row md:p-12 lg:p-16">
+            <div className="relative mb-8 h-48 w-48 flex-shrink-0 overflow-hidden rounded-full border-4 border-white shadow-lg md:mr-12 md:mb-0 md:h-64 md:w-64">
               <Image
                 src={guru.image}
                 alt={guru.name}
@@ -65,51 +73,64 @@ export default async function GuruProfilePage({ params }: PageProps) {
               />
             </div>
             <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-5xl font-extrabold text-studio-text mb-4">
+              <h1 className="text-studio-text mb-4 text-4xl font-extrabold md:text-5xl">
                 {guru.name}
               </h1>
-              <p className="text-xl md:text-2xl text-studio-primary font-medium italic">
+              <p className="text-studio-primary text-xl font-medium italic md:text-2xl">
                 {guru.subtitle}
               </p>
             </div>
           </div>
 
           {/* The Content Engine */}
-          <div className="p-8 md:p-12 lg:p-16 prose prose-lg md:prose-xl text-studio-muted max-w-none prose-headings:text-studio-text prose-a:text-studio-primary">
+          <div className="prose prose-lg md:prose-xl text-studio-muted prose-headings:text-studio-text prose-a:text-studio-primary max-w-none p-8 md:p-12 lg:p-16">
             {guru.content.map((section, index) => {
               if (section.type === "heading") {
-                return <h2 key={index} className="text-2xl md:text-3xl font-bold mt-12 mb-6 text-studio-text">{section.text}</h2>;
+                return (
+                  <h2
+                    key={index}
+                    className="text-studio-text mt-12 mb-6 text-2xl font-bold md:text-3xl"
+                  >
+                    {section.text}
+                  </h2>
+                );
               }
-              
+
               if (section.type === "paragraph") {
-                return <p key={index} className="leading-relaxed mb-6 font-light">{section.text}</p>;
+                return (
+                  <p key={index} className="mb-6 leading-relaxed font-light">
+                    {section.text}
+                  </p>
+                );
               }
-              
+
               if (section.type === "list") {
                 return (
-                  <ul key={index} className="space-y-4 mb-8">
+                  <ul key={index} className="mb-8 space-y-4">
                     {section.items?.map((item, i) => (
                       <li key={i} className="flex items-start">
-                        <span className="w-2 h-2 mt-2.5 mr-4 bg-studio-primary rounded-full flex-shrink-0" />
-                        <span className="font-light leading-relaxed">{item}</span>
+                        <span className="bg-studio-primary mt-2.5 mr-4 h-2 w-2 flex-shrink-0 rounded-full" />
+                        <span className="leading-relaxed font-light">{item}</span>
                       </li>
                     ))}
                   </ul>
                 );
               }
-              
+
               if (section.type === "quote") {
                 return (
-                  <blockquote key={index} className="border-l-4 border-studio-primary pl-6 py-4 my-10 bg-gray-50 rounded-r-2xl italic font-medium text-studio-text text-xl md:text-2xl leading-relaxed">
+                  <blockquote
+                    key={index}
+                    className="border-studio-primary text-studio-text my-10 rounded-r-2xl border-l-4 bg-gray-50 py-4 pl-6 text-xl leading-relaxed font-medium italic md:text-2xl"
+                  >
                     "{section.text}"
                   </blockquote>
                 );
               }
-              
+
               return null;
             })}
           </div>
-
         </div>
       </section>
     </main>
