@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { updateBookingAction } from "@/app/admin/actions";
 import { Save, Loader2, CheckCircle, UserCheck, UserMinus } from "lucide-react";
+import { toast } from "sonner";
 
 export default function BookingActionForm({
   bookingId,
@@ -23,20 +24,36 @@ export default function BookingActionForm({
   const [newNote, setNewNote] = useState("");
 
   const handleSave = async () => {
+    // WARNING CASE: Prevent unnecessary database calls if nothing changed
+    if (
+      attended === currentAttended &&
+      crmStatus === (currentCrmStatus || "PENDING") &&
+      newNote.trim() === ""
+    ) {
+      toast.warning("No changes were made to save.");
+      return;
+    }
+
     setIsSaving(true);
     setIsSuccess(false);
+
     try {
       await updateBookingAction(bookingId, {
         attended: attended,
         crm_status: crmStatus,
         ...(newNote.trim() !== "" && { new_note: newNote }),
       });
+
+      // SUCCESS CASE
       setIsSuccess(true);
       setNewNote(""); // Clear the note box for future updates
+      toast.success("Booking updated successfully!");
+
       setTimeout(() => setIsSuccess(false), 3000);
     } catch (error) {
+      // ERROR CASE
       console.error("Failed to save:", error);
-      alert("Failed to save updates. Please try again.");
+      toast.error("Failed to save updates. Please try again.");
     } finally {
       setIsSaving(false);
     }

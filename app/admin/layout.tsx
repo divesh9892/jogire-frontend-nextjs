@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation"; // Added to highlight the active menu item!
 import { UserButton } from "@clerk/nextjs";
 import { LayoutDashboard, MessageSquare, Calendar, Menu, X } from "lucide-react";
+import { Toaster } from "sonner";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -20,6 +21,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     // Base layout: Column on mobile (for the top nav), Row on desktop
     <div className="flex h-screen flex-col overflow-hidden bg-gray-50 md:flex-row">
+      <Toaster position="top-center" richColors closeButton />
       {/* --- MOBILE TOP NAVIGATION --- */}
       {/* This only shows on small screens and acts as the header */}
       <div className="z-20 flex shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 py-3 md:hidden">

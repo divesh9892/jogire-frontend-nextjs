@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { updateInquiryAction } from "@/app/admin/actions";
 import { Save, Loader2, CheckCircle } from "lucide-react";
+import { toast } from "sonner"; // Imported Sonner
 
 export default function InquiryActionForm({
   inquiryId,
@@ -14,23 +15,34 @@ export default function InquiryActionForm({
   const [isSaving, setIsSaving] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [status, setStatus] = useState(currentStatus);
-  const [newNote, setNewNote] = useState(""); // Starts empty!
+  const [newNote, setNewNote] = useState("");
 
   const handleSave = async () => {
+    // WARNING CASE: Prevent unnecessary database calls if nothing changed
+    if (status === currentStatus && newNote.trim() === "") {
+      toast.warning("No changes were made to save.");
+      return;
+    }
+
     setIsSaving(true);
     setIsSuccess(false);
+
     try {
       await updateInquiryAction(inquiryId, {
         status: status,
-        // Only send a note if they actually typed something
         ...(newNote.trim() !== "" && { new_note: newNote }),
       });
+
+      // SUCCESS CASE
       setIsSuccess(true);
-      setNewNote(""); // Instantly clear the box so they can type another note later
+      setNewNote("");
+      toast.success("Inquiry updated successfully!");
+
       setTimeout(() => setIsSuccess(false), 3000);
     } catch (error) {
+      // ERROR CASE
       console.error("Failed to save:", error);
-      alert("Failed to save updates. Please try again.");
+      toast.error("Failed to save updates. Please try again.");
     } finally {
       setIsSaving(false);
     }
