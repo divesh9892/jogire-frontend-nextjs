@@ -450,11 +450,15 @@ export const gurusData = [
       },
       {
         type: "heading",
-        text: "2. Integration of Yoga with Vedanta",
+        text: "2. Debate with Mandana Mishra",
       },
       {
         type: "paragraph",
-        text: "While Shankara is primarily known for his Jnana Yoga (Path of Knowledge), he also acknowledged the role of yogic practices—particularly meditation, self-discipline, and contemplation—as essential tools to realize the truth of Advaita. He synthesized Vedantic philosophy with elements of Raja Yoga, especially in terms of internal purification and control of the mind. He saw yoga not just as a physical practice, but as a spiritual methodology to transcend ego and realize the oneness of existence.",
+        text: "One of his most famous intellectual debates was with Mandana Mishra, a scholar of the Mimamsa school.",
+      },
+      {
+        type: "paragraph",
+        text: "Shankara successfully convinced him of the validity of Advaita Vedanta, and Mandana Mishra later became one of his disciples as Sureshwaracharya.",
       },
       {
         type: "heading",
@@ -478,7 +482,31 @@ export const gurusData = [
       },
       {
         type: "heading",
-        text: "4. Raja Yoga and Inner Realization",
+        text: "4. Compositions and Hymns",
+      },
+      {
+        type: "paragraph",
+        text: "Apart from philosophical texts, Shankara composed devotional hymns that are still widely recited today:",
+      },
+      {
+        type: "list",
+        items: [
+          "Bhaja Govindam – A call for devotion and renunciation of material attachments.",
+          "Soundarya Lahari – A hymn in praise of Goddess Parvati.",
+          "Nirvana Shatakam – A powerful expression of Advaita philosophy.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "5. Integration of Yoga with Vedanta",
+      },
+      {
+        type: "paragraph",
+        text: "While Shankara is primarily known for his Jnana Yoga (Path of Knowledge), he also acknowledged the role of yogic practices—particularly meditation, self-discipline, and contemplation—as essential tools to realize the truth of Advaita. He synthesized Vedantic philosophy with elements of Raja Yoga, especially in terms of internal purification and control of the mind. He saw yoga not just as a physical practice, but as a spiritual methodology to transcend ego and realize the oneness of existence.",
+      },
+      {
+        type: "heading",
+        text: "6. Raja Yoga and Inner Realization",
       },
       {
         type: "paragraph",
@@ -498,7 +526,7 @@ export const gurusData = [
       },
       {
         type: "heading",
-        text: "5. Practical Yogic Disciplines in Advaita Practice",
+        text: "7. Practical Yogic Disciplines in Advaita Practice",
       },
       {
         type: "paragraph",
@@ -515,7 +543,7 @@ export const gurusData = [
       },
       {
         type: "heading",
-        text: "6. Influence on Hatha Yoga and Kundalini Traditions",
+        text: "8. Influence on Hatha Yoga and Kundalini Traditions",
       },
       {
         type: "paragraph",
@@ -523,11 +551,51 @@ export const gurusData = [
       },
       {
         type: "heading",
-        text: "7. Establishment of Monastic Institutions (Mathas)",
+        text: "9. Unification of Hindu Worship and Rituals",
+      },
+      {
+        type: "paragraph",
+        text: "He played a key role in integrating different Hindu sects and promoting the worship of the Panchayatana (five deities) system:",
+      },
+      {
+        type: "paragraph",
+        text: "Vishnu, Shiva, Shakti (Devi), Ganesha, and Surya.",
+      },
+      {
+        type: "paragraph",
+        text: "This helped unify diverse Hindu traditions under one umbrella.",
+      },
+      {
+        type: "heading",
+        text: "10. Pilgrimage and Re-establishment of Temples",
+      },
+      {
+        type: "paragraph",
+        text: "He traveled extensively across India to restore Hindu temples and pilgrimage centers.",
+      },
+      {
+        type: "paragraph",
+        text: "He is credited with revitalizing the Kedarnath and Badrinath temples in the Himalayas.",
+      },
+      {
+        type: "heading",
+        text: "11. Establishment of Monastic Institutions (Mathas)",
       },
       {
         type: "paragraph",
         text: "Shankara institutionalized his teachings by establishing four major monastic centers (Mathas) in Sringeri, Dwarka, Jyotir Matha, and Puri. These centers continue to promote Advaita Vedanta and serve as spiritual hubs for yogic learning.",
+      },
+      {
+        type: "heading",
+        text: "12. Influence on Later Hindu Thought",
+      },
+      {
+        type: "paragraph",
+        text: "His teachings influenced later spiritual leaders, such as Ramakrishna Paramahamsa, Swami Vivekananda, and others.",
+      },
+      {
+        type: "paragraph",
+        text: "His works continue to be studied in Sanatan philosophy, and his legacy remains strong in both academic and spiritual traditions.",
       },
       {
         type: "quote",
@@ -674,6 +742,38 @@ export const gurusData = [
       {
         type: "paragraph",
         text: "Unlike earlier yogis who were primarily monks, Gorakhnath encouraged householders to practice yoga. This helped in the wider transmission of yoga from esoteric practices to a more accessible discipline.",
+      },
+      {
+        type: "heading",
+        text: "7. Practical Techniques and Teachings",
+      },
+      {
+        type: "paragraph",
+        text: "He is associated with advanced yogic practices such as:",
+      },
+      {
+        type: "list",
+        items: [
+          "Shatkarmas (six cleansing techniques).",
+          "Pranayama (breath control) to regulate life energy.",
+          "Nada Yoga (sound meditation) as a means to spiritual elevation.",
+        ],
+      },
+      {
+        type: "heading",
+        text: "8. Influence on Later Yogic Traditions",
+      },
+      {
+        type: "paragraph",
+        text: "His teachings deeply influenced medieval and modern yoga schools, including:",
+      },
+      {
+        type: "list",
+        items: [
+          "Swatmarama’s Hatha Yoga Pradipika (a 15th-century text on Hatha Yoga).",
+          "The integration of tantric elements into yoga practice.",
+          "The lineage of yogis practicing in the Himalayan and Nath traditions today.",
+        ],
       },
       {
         type: "quote",
